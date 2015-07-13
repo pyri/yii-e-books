@@ -57,8 +57,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->label($model,'desc'); ?>
+		<?php echo $form->textField($model,'desc',array('size'=>60,'maxlength'=>100)); ?>
 	</div>
 
 	<div class="row buttons">

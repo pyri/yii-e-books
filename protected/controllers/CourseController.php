@@ -122,6 +122,9 @@ class CourseController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$model=Course::model()->findByPk(40);
+		var_dump($model->lectures); die;
+
 		$dataProvider=new CActiveDataProvider('Course');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,

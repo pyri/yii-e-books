@@ -1,28 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "course".
+ * This is the model class for table "users".
  *
- * The followings are the available columns in table 'course':
+ * The followings are the available columns in table 'users':
  * @property integer $id
- * @property string $title
- * @property string $type_of_publication
- * @property string $org
- * @property string $source
- * @property integer $user_id
  * @property string $username
- * @property string $author
- * @property integer $publish
- * @property string $desc
+ * @property string $password
+ * @property string $ip
  */
-class Course extends CActiveRecord
+class User extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'course';
+		return 'users';
 	}
 
 	/**
@@ -33,13 +27,12 @@ class Course extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, type_of_publication, org, source, user_id, username, author, publish', 'required'),
-			array('user_id, publish', 'numerical', 'integerOnly'=>true),
-			array('title, username, author, desc', 'length', 'max'=>100),
-			array('type_of_publication', 'length', 'max'=>50),
+			array('username, password, ip', 'required'),
+			array('username, ip', 'length', 'max'=>16),
+			array('password', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title, type_of_publication, org, source, user_id, username, author, publish, desc', 'safe', 'on'=>'search'),
+			array('id, username, password, ip', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -51,11 +44,6 @@ class Course extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'lectures1'=>array(self::MANY_MANY, 'Lecture',
-				'link_practica(course_id, lecture_id)'),
-			'lectures'=>array(self::BELONGS_TO, 'link_practica',
-
-				'link_practica(course_id, lecture_id)'),
 		);
 	}
 
@@ -66,15 +54,9 @@ class Course extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'type_of_publication' => 'Type Of Publication',
-			'org' => 'Org',
-			'source' => 'Source',
-			'user_id' => 'User',
 			'username' => 'Username',
-			'author' => 'Author',
-			'publish' => 'Publish',
-			'desc' => 'Desc',
+			'password' => 'Password',
+			'ip' => 'Ip',
 		);
 	}
 
@@ -97,15 +79,9 @@ class Course extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('title',$this->title,true);
-		$criteria->compare('type_of_publication',$this->type_of_publication,true);
-		$criteria->compare('org',$this->org,true);
-		$criteria->compare('source',$this->source,true);
-		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('username',$this->username,true);
-		$criteria->compare('author',$this->author,true);
-		$criteria->compare('publish',$this->publish);
-		//$criteria->compare('desc',$this->desc,true);
+		$criteria->compare('password',$this->password,true);
+		$criteria->compare('ip',$this->ip,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -116,7 +92,7 @@ class Course extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Course the static model class
+	 * @return User the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

@@ -68,9 +68,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'description'); ?>
-		<?php echo $form->textArea($model,'description',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'description'); ?>
+		<?php echo $form->labelEx($model,'desc'); ?>
+		<?php echo $form->textArea($model,'desc',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'desc'); ?>
 	</div>
 
 	<div class="row buttons">

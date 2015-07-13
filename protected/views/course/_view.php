@@ -42,8 +42,8 @@
 	<?php echo CHtml::encode($data->publish); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
-	<?php echo CHtml::encode($data->description); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('desc')); ?>:</b>
+	<?php echo CHtml::encode($data->desc); ?>
 	<br />
 
 	*/ ?>

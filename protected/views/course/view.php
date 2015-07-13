@@ -30,6 +30,6 @@ $this->menu=array(
 		'username',
 		'author',
 		'publish',
-		'description',
+		'desc',
 	),
 )); ?>
